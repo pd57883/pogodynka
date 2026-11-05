@@ -17,49 +17,21 @@ class Measurement
 
     #[ORM\ManyToOne(inversedBy: 'measurements')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
     private ?Location $location = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Type(type: \DateTimeInterface::class, groups: ['create', 'update'])]
     private ?\DateTime $date = null;
 
     #[ORM\Column]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Type(type: 'integer', groups: ['create', 'update'])]
     private ?int $temperature = null;
 
     #[ORM\Column]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Type(type: 'integer', groups: ['create', 'update'])]
-    #[Assert\Range(
-        notInRangeMessage: 'This value should be between {{ min }} and {{ max }}.',
-        min: 0,
-        max: 100,
-        groups: ['create', 'update']
-    )]
     private ?int $precipitation = null;
 
     #[ORM\Column]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Type(type: 'integer', groups: ['create', 'update'])]
-    #[Assert\Range(
-        notInRangeMessage: 'This value should be between {{ min }} and {{ max }}.',
-        min: 0,
-        max: 100,
-        groups: ['create', 'update']
-    )]
     private ?int $humidity = null;
 
     #[ORM\Column]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Type(type: 'integer', groups: ['create', 'update'])]
-    #[Assert\Range(
-        notInRangeMessage: 'This value must be at least {{ min }}.',
-        min: 0,
-        groups: ['create', 'update']
-    )]
     private ?int $wind = null;
 
     public function getId(): ?int

@@ -18,38 +18,15 @@ class Location
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\NotBlank(groups: ['create', 'update'])]
-    #[Assert\Length(max: 255, groups: ['create', 'update'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 2)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\NotBlank(groups: ['create', 'update'])]
-    #[Assert\Choice(
-        choices: ['PL', 'DE', 'FR', 'ES', 'IT', 'GB', 'US'],
-        groups: ['create', 'update']
-    )]
     private ?string $country = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Range(
-        notInRangeMessage: 'This value should be between {{ min }} and {{ max }}.',
-        min: -90,
-        max: 90,
-        groups: ['create', 'update']
-    )]
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
-    #[Assert\NotNull(groups: ['create', 'update'])]
-    #[Assert\Range(
-        notInRangeMessage: 'This value should be between {{ min }} and {{ max }}.',
-        min: -180,
-        max: 180,
-        groups: ['create', 'update']
-    )]
     private ?string $longitude = null;
 
     /**

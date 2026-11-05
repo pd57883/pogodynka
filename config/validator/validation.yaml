@@ -1,0 +1,111 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                groups: ['create', 'update']
+                message: 'Please enter a city name.'
+            - Length:
+                min: 3
+                max: 255
+                groups: ['create', 'update']
+                minMessage: 'The city name must contain at least {{ limit }} characters.'
+                maxMessage: 'The city name cannot exceed {{ limit }} characters.'
+        country:
+            - NotBlank:
+                groups: ['create', 'update']
+                message: 'Please select a country.'
+            - Choice:
+                choices: ['PL', 'DE', 'FR', 'ES', 'IT', 'GB', 'US']
+                groups: ['create', 'update']
+                message: 'Please select a valid country.'
+        latitude:
+            - NotBlank:
+                groups: ['create', 'update']
+                message: 'Please enter a latitude.'
+            - Type:
+                type: numeric
+                groups: ['create', 'update']
+                message: 'Latitude must be a valid number.'
+            - Range:
+                min: -90
+                max: 90
+                groups: ['create', 'update']
+                notInRangeMessage: 'Latitude must be between {{ min }} and {{ max }}.'
+        longitude:
+            - NotBlank:
+                groups: ['create', 'update']
+                message: 'Please enter a longitude.'
+            - Type:
+                type: numeric
+                groups: ['create', 'update']
+                message: 'Longitude must be a valid number.'
+            - Range:
+                min: -180
+                max: 180
+                groups: ['create', 'update']
+                notInRangeMessage: 'Longitude must be between {{ min }} and {{ max }}.'
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank:
+                groups: ['create', 'update']
+                message: 'Please select a measurement date.'
+            - Type:
+                type: DateTimeInterface
+                groups: ['create', 'update']
+                message: 'Please enter a valid date.'
+        temperature:
+            - NotBlank:
+                  groups: ['create', 'update']
+                  message: 'Please enter a temperature.'
+            - Type:
+                type: integer
+                groups: ['create', 'update']
+                message: 'Temperature must be a whole number.'
+        precipitation:
+            - NotBlank:
+                  groups: ['create', 'update']
+                  message: 'Please enter precipitation.'
+            - Type:
+                  type: integer
+                  groups: ['create', 'update']
+                  message: 'Precipitation must be a whole number.'
+            - Range:
+                  min: 0
+                  max: 100
+                  groups: ['create', 'update']
+                  notInRangeMessage: 'Precipitation must be between {{ min }} and {{ max }}.'
+        humidity:
+            - NotBlank:
+                  groups: ['create', 'update']
+                  message: 'Please enter humidity.'
+            - Type:
+                  type: integer
+                  groups: ['create', 'update']
+                  message: 'Humidity must be a whole number.'
+            - Range:
+                  min: 0
+                  max: 100
+                  groups: ['create', 'update']
+                  notInRangeMessage: 'Humidity must be between {{ min }} and {{ max }}.'
+        wind:
+            - NotBlank:
+                  groups: ['create', 'update']
+                  message: 'Please enter wind speed.'
+            - Type:
+                  type: integer
+                  groups: ['create', 'update']
+                  message: 'Wind speed must be a whole number.'
+            - Range:
+                  min: 0
+                  groups: ['create', 'update']
+                  notInRangeMessage: 'Wind speed cannot be negative.'
+        location:
+            - NotBlank:
+                  groups: ['create', 'update']
+                  message: 'Please select a location.'
+            - Type:
+                  type: App\Entity\Location
+                  groups: ['create', 'update']
+                  message: 'Please select a valid location.'

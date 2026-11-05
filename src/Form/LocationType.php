@@ -15,6 +15,7 @@ class LocationType extends AbstractType
     {
         $builder
             ->add('city', null, [
+                'trim' => true,
                 'attr' => [
                     'placeholder' => 'Enter city name',
                 ],
@@ -32,7 +33,7 @@ class LocationType extends AbstractType
                 'placeholder' => 'Select a country',
             ])
             ->add('latitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
                 'attr' => [
                     'placeholder' => 'e.g., 53.428542',
                     'step' => 'any',
@@ -41,7 +42,7 @@ class LocationType extends AbstractType
                 ],
             ])
             ->add('longitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
                 'attr' => [
                     'placeholder' => 'e.g., 14.552812',
                     'step' => 'any',
