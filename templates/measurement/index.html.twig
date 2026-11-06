@@ -14,7 +14,9 @@
                 <th>Precipitation</th>
                 <th>Humidity</th>
                 <th>Wind</th>
-                <th>actions</th>
+                {% if is_granted('ROLE_MEASUREMENT_SHOW') or is_granted('ROLE_MEASUREMENT_EDIT') %}
+                    <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -26,10 +28,16 @@
                 <td>{{ measurement.precipitation }}</td>
                 <td>{{ measurement.humidity }}</td>
                 <td>{{ measurement.wind }}</td>
-                <td>
-                    <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
-                    <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
-                </td>
+                {% if is_granted('ROLE_MEASUREMENT_SHOW') or is_granted('ROLE_MEASUREMENT_EDIT') %}
+                    <td>
+                        {% if is_granted('ROLE_MEASUREMENT_SHOW') %}
+                            <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
+                            <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                        {% endif %}
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
