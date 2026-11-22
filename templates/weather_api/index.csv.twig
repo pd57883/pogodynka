@@ -1,0 +1,4 @@
+city,country,date,celsius,fahrenheit,precipitation,humidity,wind
+{% for m in measurements -%}
+{{ city }},{{ country }},{{ m.date|date('Y-m-d') }},{{ m.temperature }},{{ m.getTemperatureInFahrenheit() }},{{ m.precipitation }},{{ m.humidity }},{{ m.wind }}
+{% endfor %}

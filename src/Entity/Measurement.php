@@ -68,6 +68,15 @@ class Measurement
         return $this->temperature;
     }
 
+    public function getTemperatureInFahrenheit(): ?int
+    {
+        if ($this->temperature === null) {
+            return null;
+        }
+
+        return (int) round(($this->temperature * 9 / 5) + 32);
+    }
+
     public function setTemperature(int $temperature): static
     {
         $this->temperature = $temperature;
